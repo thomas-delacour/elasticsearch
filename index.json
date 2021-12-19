@@ -1,6 +1,14 @@
 {
   "settings": {
-        "index.default_pipeline": "amazon_pipeline"
+        "index.default_pipeline": "amazon_pipeline",
+        "analysis": {
+            "analyzer": {
+              "custom_analyzer": {
+                "type": "standard",
+                "stopwords": "_english_"
+              }
+            }
+          }
     },
 
   "mappings": {
@@ -13,14 +21,14 @@
       "number_of_reviews": {"type": "short"},
       "number_of_answered_questions": {"type": "short"},
       "average_review_rating": {"type": "float"},
-      "amazon_category_and_sub_category": {"type": "keyword"},
+      "amazon_category_and_sub_category": {"type": "text"},
       "customers_who_bought_this_item_also_bought": {"type": "keyword"},
       "description": {"type": "text"},
       "product_information": {"type": "text"},
       "product_description": {"type": "text"},
       "items_customers_buy_after_viewing_this_item": {"type": "text"},
       "customer_questions_and_answers": {"type": "text"},
-      "customer_reviews": {"type": "text"},
+      "customer_reviews": {"type": "text", "analyzer": "custom_analyzer"},
       "sellers": {"type": "text"}
     }
   }  
