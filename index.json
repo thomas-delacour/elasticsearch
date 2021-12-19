@@ -4,7 +4,8 @@
         "analysis": {
             "analyzer": {
               "custom_analyzer": {
-                "type": "standard",
+                "tokenizer": "standard",
+                "filter": ["lowercase", "stemmer", "stop"],
                 "stopwords": "_english_"
               }
             }
@@ -21,15 +22,15 @@
       "number_of_reviews": {"type": "short"},
       "number_of_answered_questions": {"type": "short"},
       "average_review_rating": {"type": "float"},
-      "amazon_category_and_sub_category": {"type": "text"},
+      "amazon_category_and_sub_category": {"type": "text", "analyzer": "custom_analyzer"},
       "customers_who_bought_this_item_also_bought": {"type": "keyword"},
-      "description": {"type": "text"},
-      "product_information": {"type": "text"},
-      "product_description": {"type": "text"},
-      "items_customers_buy_after_viewing_this_item": {"type": "text"},
-      "customer_questions_and_answers": {"type": "text"},
+      "description": {"type": "text", "analyzer": "custom_analyzer"},
+      "product_information": {"type": "text", "analyzer": "custom_analyzer"},
+      "product_description": {"type": "text", "analyzer": "custom_analyzer"},
+      "items_customers_buy_after_viewing_this_item": {"type": "text", "analyzer": "custom_analyzer"},
+      "customer_questions_and_answers": {"type": "text", "analyzer": "custom_analyzer"},
       "customer_reviews": {"type": "text", "analyzer": "custom_analyzer"},
-      "sellers": {"type": "text"}
+      "sellers": {"type": "text", "analyzer": "custom_analyzer"}
     }
   }  
 
