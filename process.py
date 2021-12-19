@@ -18,6 +18,7 @@ def clean_data(data):
             data[col] = data[col].str.replace('"', "")
             data[col] = data[col].str.replace(",", "")
             data[col] = data[col].str.replace("£", "")
+            data[col] = data[col].str.replace("&", "and")
 
             # Only keep numerical value at the beginning of the string
             if col in [
