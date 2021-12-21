@@ -28,6 +28,10 @@ def clean_data(data):
             ]:
                 data[col] = data[col].str.replace(" .+", "", regex=True)
 
+            # Remove reviews titles to avoid duplicate tokens
+            if col == "customer_reviews":
+                data[col] = data[col].str.replace("(^|\|).+?//", "", regex=True)
+                data[col] = data[col].str.strip()
     return data
 
 
