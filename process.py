@@ -1,5 +1,7 @@
 """
-Script to pre-process data before inserting in Elasticsearch
+Script to pre-process data before inserting in Elasticsearch.
+It will remove several caracters that cuold be an issue for Elasticsearch
+to process. The resulting processed data will be saved in a new CSV file
 """
 
 import re
@@ -62,7 +64,3 @@ data = pd.read_csv("processed_data.csv")
 
 data = clean_data(data)
 data.to_csv("processed_data.csv", index=False)
-
-with open("ids.txt", "w") as ids:
-    for i in ids_list:
-        ids.write(f"{i}\n")

@@ -12,12 +12,12 @@ rm insert_output.txt
 
 while read line
 do  
-   # Write data to a file first
-   # If data string is too long curl command won't execute
+   # Write data to a file first because if data string
+   # is too long curl command won't execute
    echo "{ \"csv_entry\": \"$line\" }" > data.txt
 
    # Insert data to Elasticsearch using data in file
    curl -sX POST localhost:9200/amazon/_doc -H "Content-Type: application/json" -d @data.txt | jq >> insert_output.txt
-done < <(tail -n +2 processed_data.csv)
+done < <(tail -n +2 processed_data.csv) # Skip the header row
 
 curl -X GET localhost:9200/amazon/_count | jq

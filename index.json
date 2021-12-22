@@ -23,7 +23,7 @@
       "number_of_answered_questions": {"type": "short"},
       "average_review_rating": {"type": "float"},
       "amazon_category_and_sub_category": {"type": "text", "analyzer": "custom_analyzer"},
-      "customers_who_bought_this_item_also_bought": {"type": "keyword"},
+      "customers_who_bought_this_item_also_bought": {"type": "text", "analyzer": "custom_analyzer"},
       "description": {"type": "text", "analyzer": "custom_analyzer"},
       "product_information": {"type": "text", "analyzer": "custom_analyzer"},
       "product_description": {"type": "text", "analyzer": "custom_analyzer"},
@@ -33,7 +33,4 @@
       "sellers": {"type": "text", "analyzer": "custom_analyzer"}
     }
   }  
-
 }
-
-
