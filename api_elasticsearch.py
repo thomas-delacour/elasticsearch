@@ -1,6 +1,7 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 import uvicorn
 from elasticsearch import Elasticsearch
+from typing import Optional
 
 api = FastAPI(
     title="API Elasticsearch",
@@ -29,6 +30,24 @@ def get_info() -> dict:
     """
 
     return {"indexes": client.indices.get(index="*")}
+
+
+@api.get("/search", name="Search for documents")
+def search(query, field, index: Optional[str] = "*") -> dict:
+    """
+    Return documents according to search query
+    """
+
+    if index != "*" and index not in client.indices.get(index="*").keys():
+        raise HTTPException(
+            status_code=404, detail=f"Index {index} does not exist"
+        )
+
+    return {
+        "results": client.search(
+            index=index, body={"query": {"match": {field: query}}}
+        )
+    }
 
 
 if __name__ == "__main__":
